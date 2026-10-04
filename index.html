@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CST — Jungla</title>
+  <meta name="description" content="CST Web Experience — o expediție interactivă prin junglă." />
+  <meta name="theme-color" content="#03110a" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/src/style.css" />
+</head>
+<body>
+  <canvas id="gl"></canvas>
+  <div class="grain"></div>
+  <div class="vignette"></div>
+
+  <!-- LOADER -->
+  <div id="loader">
+    <div class="loader-top mono"><span>CST/JUNGLA</span><span>EXPEDIȚIA 001</span></div>
+    <div class="loader-mid">
+      <div class="loader-pct mono"><span id="pct">000</span>%</div>
+      <div class="loader-bar"><i id="bar"></i></div>
+      <div class="loader-msg mono" id="loadmsg">SE CALIBREAZĂ SENZORII</div>
+    </div>
+    <div class="loader-enter" id="enter" hidden>
+      <button class="btn mono" data-sound="1">[ INTRĂ CU SUNET ]</button>
+      <button class="btn btn-ghost mono" data-sound="0">INTRĂ FĂRĂ SUNET</button>
+    </div>
+    <div class="loader-bot mono"><span>LAT 04°12′S</span><span>LONG 62°41′W</span></div>
+  </div>
+
+  <!-- HUD fix -->
+  <header class="hud mono" id="hud">
+    <a class="hud-logo" href="#top">CST<em>/</em>JUNGLA</a>
+    <nav class="hud-nav">
+      <a href="#manifest" data-decode>MANIFEST</a>
+      <a href="#proiecte" data-decode>PROIECTE</a>
+      <a href="#contact" data-decode>CONTACT</a>
+    </nav>
+    <button class="hud-sound" id="soundBtn" aria-label="Sunet"><span class="eq"><i></i><i></i><i></i><i></i></span><b id="soundTxt">SUNET OFF</b></button>
+  </header>
+  <div class="hud-corner tl"></div><div class="hud-corner tr"></div><div class="hud-corner bl"></div><div class="hud-corner br"></div>
+  <div class="hud-bottom mono">
+    <div class="hud-coords" id="coords">X 00.00 · Y 00.00 · Z 00.00</div>
+    <div class="hud-sector"><span id="sectorNum">01</span>/08 — <span id="sectorName">INTRARE</span></div>
+    <div class="hud-pct"><span id="scrollPct">000</span>% EXPLORAT</div>
+  </div>
+  <div class="hud-rail"><i id="rail"></i>
+    <ol class="mono">
+      <li>01</li><li>02</li><li>03</li><li>04</li><li>05</li><li>06</li><li>07</li><li>08</li>
+    </ol>
+  </div>
+
+  <!-- etichete 3D proiectate pe ecran -->
+  <div id="labels"></div>
+
+  <!-- CONȚINUT LA SCROLL -->
+  <main id="top">
+    <section class="s s-hero" data-sector="INTRARE">
+      <p class="kicker mono" data-decode>// STUDIO DIGITAL · PITEȘTI · EST. 2024</p>
+      <h1 class="title"><span data-split>Construim</span><br /><span data-split>în sălbăticie.</span></h1>
+      <p class="hint mono"><span class="mouse"></span> SCROLL PENTRU A EXPLORA</p>
+    </section>
+
+    <section class="s s-manifest" id="manifest" data-sector="MANIFEST">
+      <div class="panel">
+        <p class="kicker mono" data-decode>// 02 — MANIFEST</p>
+        <p class="big" data-reveal>Internetul e plin de site-uri care arată la fel. Noi plecăm în direcția opusă: acolo unde nu a mai fost nimeni.</p>
+      </div>
+    </section>
+
+    <section class="s s-manifest2" data-sector="FILOZOFIE">
+      <div class="panel panel-right">
+        <p class="kicker mono" data-decode>// 03 — FILOZOFIE</p>
+        <p class="big" data-reveal>Fiecare proiect e un artefact. Îl găsim, îl curățăm de mușchi și îl punem în lumină.</p>
+        <ul class="stats mono">
+          <li><b data-count="40">0</b><span>SITE-URI LANSATE</span></li>
+          <li><b data-count="12">0</b><span>MODELE 3D / AR</span></li>
+          <li><b data-count="100">0</b><span>% COD PROPRIU</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <div id="proiecte"></div>
+    <section class="s s-proj" data-sector="ARTEFACT 01" data-proj="0"></section>
+    <section class="s s-proj" data-sector="ARTEFACT 02" data-proj="1"></section>
+    <section class="s s-proj" data-sector="ARTEFACT 03" data-proj="2"></section>
+    <section class="s s-proj" data-sector="ARTEFACT 04" data-proj="3"></section>
+
+    <section class="s s-final" id="contact" data-sector="PORTAL">
+      <p class="kicker mono" data-decode>// 08 — PORTALUL</p>
+      <h2 class="title title-sm"><span data-split>Ai un proiect</span><br /><span data-split>sălbatic?</span></h2>
+      <a class="cta mono" href="mailto:cstwebexperience@gmail.com" data-decode>[ TRIMITE UN SEMNAL ]</a>
+      <div class="links mono">
+        <a href="https://cstportfolio.xyz" target="_blank" rel="noopener" data-decode>PORTOFOLIU</a>
+        <a href="https://www.instagram.com/" target="_blank" rel="noopener" data-decode>INSTAGRAM</a>
+        <a href="mailto:cstwebexperience@gmail.com" data-decode>EMAIL</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- PANOU PROIECT (fix, se schimbă după secțiune) -->
+  <aside class="proj-panel mono" id="projPanel" aria-live="polite">
+    <div class="pp-head"><span id="ppIdx">01</span><span>/04</span><span class="pp-tag" id="ppTag">WEBAR</span></div>
+    <h3 class="pp-title" id="ppTitle">—</h3>
+    <p class="pp-desc" id="ppDesc"></p>
+    <dl class="pp-meta">
+      <div><dt>AN</dt><dd id="ppYear"></dd></div>
+      <div><dt>ROL</dt><dd id="ppRole"></dd></div>
+      <div><dt>STACK</dt><dd id="ppStack"></dd></div>
+    </dl>
+    <div class="pp-actions">
+      <button class="btn" id="ppOpen">[ EXAMINEAZĂ ]</button>
+      <a class="btn btn-ghost" id="ppLink" target="_blank" rel="noopener">VEZI LIVE ↗</a>
+    </div>
+  </aside>
+
+  <!-- DETALIU PROIECT -->
+  <div class="detail" id="detail" hidden>
+    <button class="detail-close mono" id="detailClose">[ ÎNCHIDE ✕ ]</button>
+    <div class="detail-inner">
+      <p class="kicker mono" id="dKicker"></p>
+      <h2 class="detail-title" id="dTitle"></h2>
+      <p class="detail-body" id="dBody"></p>
+      <div class="detail-frame"><iframe id="dFrame" title="Previzualizare proiect" loading="lazy"></iframe></div>
+    </div>
+  </div>
+
+  <div class="cursor" id="cursor"><i></i></div>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>

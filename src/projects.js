@@ -1,0 +1,43 @@
+// Proiectele ("artefactele"). Fiecare are un slot 3D: /models/proiect-N.glb
+export const projects = [
+  {
+    title: 'Meniu 3D',
+    tag: 'WEBAR',
+    year: '2026',
+    role: 'CONCEPT + COD',
+    stack: 'MODEL-VIEWER',
+    url: 'https://meniu3d.com',
+    desc: 'Scanezi un cod QR și preparatul apare pe masă, la mărime reală, în realitate augmentată. Fără aplicație.',
+    body: 'Primul meniu de restaurant din România în care fiecare preparat se vede în 3D și în AR direct din browser. Pilot la Garden Pub Pitești.',
+  },
+  {
+    title: 'Voltride',
+    tag: 'E-COMMERCE',
+    year: '2026',
+    role: 'DESIGN + COD',
+    stack: 'NEXT.JS',
+    url: 'https://voltride-nine.vercel.app',
+    desc: 'Magazin de biciclete electrice cu video care se derulează odată cu scroll-ul.',
+    body: 'Cinci biciclete electrice, poze de studio și o pagină de produs la care video-ul se derulează cadru cu cadru pe măsură ce dai scroll.',
+  },
+  {
+    title: 'UNIT Energy',
+    tag: '3D PRODUS',
+    year: '2026',
+    role: 'DESIGN + 3D',
+    stack: 'THREE.JS',
+    url: 'https://unit-energy.vercel.app',
+    desc: 'Site pentru o băutură energizantă, cu doza în 3D și texturi făcute pe brand.',
+    body: 'Nouă produse și o doză 3D care se rotește, cu etichetă texturată de mână pe identitatea UNIT.',
+  },
+  {
+    title: 'TeoDreams',
+    tag: 'MAGAZIN',
+    year: '2026',
+    role: 'DESIGN + COD',
+    stack: 'NEXT.JS',
+    url: 'https://teodreams.vercel.app',
+    desc: 'Universul Bicsi & Picsi: mascote în 3D și un magazin online pentru serialul Familia Raicu.',
+    body: 'Site și magazin online pentru serialul animat Familia Raicu, cu mascotele Bicsi și Picsi în 3D, coș de cumpărături și comandă pe email.',
+  },
+];

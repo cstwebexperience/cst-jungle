@@ -1,0 +1,10 @@
+import { chromium } from 'playwright'
+const b = await chromium.launch({ args: ['--use-angle=swiftshader','--enable-unsafe-swiftshader'] })
+const p = await b.newPage({ viewport: { width: 1440, height: 900 } })
+p.on('pageerror', e => console.log('ERR', e.message)); await p.goto('http://localhost:3030'); await p.waitForTimeout(3500); console.log(await p.evaluate(() => [document.querySelector('#pct').textContent, document.querySelector('#enter').hidden]))
+await p.click('#enter .btn-ghost'); await p.waitForTimeout(1500)
+await p.evaluate(() => scrollTo(0, (document.documentElement.scrollHeight - innerHeight) * 4 / 7))
+await p.waitForTimeout(6000)
+console.log(await p.evaluate(() => [scrollY, document.documentElement.scrollHeight, __scene.progress, __scene.smoothProgress, __scene.camera.position.toArray()]))
+console.log(await p.evaluate(() => [...document.querySelectorAll('.lbl')].map(l => l.style.opacity + ' ' + l.style.transform + ' ' + l.textContent)))
+await b.close()
